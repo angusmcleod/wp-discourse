@@ -120,7 +120,8 @@ class DiscourseCommentFormatterTest extends UnitTest {
 
         // Ensure we've made the right logs.
         $log = $this->get_last_log();
-        $this->assertRegExp( '/comment_formatter.ERROR: format.missing_post_data/', $log );
+        $this->assertRegExp( '/comment_formatter.WARNING: format.missing_post_data/', $log );
+        $this->assertRegExp( '/"post_id":' . $this->post_id . '/', $log );
         $this->assertRegExp( '/"keys":"' . $deleted_required_meta_key . '"/', $log );
     }
 

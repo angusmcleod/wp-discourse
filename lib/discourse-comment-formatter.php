@@ -59,7 +59,12 @@ class DiscourseCommentFormatter extends DiscourseBase {
 		}
 
 		if ( ! empty( $missing_post_custom ) ) {
-			$this->logger->error( 'format.missing_post_data', array( 'keys' => implode( ',', $missing_post_custom ) ) );
+			$this->logger->warn(
+                 'format.missing_post_data', array(
+					 'post_id' => $post_id,
+					 'keys'    => implode( ',', $missing_post_custom ),
+				 )
+                );
 			return wp_kses_post( Templates::bad_response_html() );
 		}
 
